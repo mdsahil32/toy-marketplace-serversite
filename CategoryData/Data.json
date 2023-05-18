@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "name": "Spider Man",
+        "picture": "https://images.unsplash.com/photo-1529335764857-3f1164d1cb24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=389&q=80",
+        "price": 29.99,
+        "rating": 4.5
+    },
+    {
+        "id": 1,
+        "name": "Captain America",
+        "picture": "https://hamleysgumlet.gumlet.io/product/491902622/665/491902622-1.jpg",
+        "price": 19.99,
+        "rating": 4.8
+    },
+    {
+        "id": 2,
+        "name": "Batman",
+        "picture": "https://c1.wallpaperflare.com/preview/500/969/277/batman-superhero-cape-mask.jpg",
+        "price": 34.99,
+        "rating": 4.7
+    },
+    {
+        "id": 2,
+        "name": "Superman",
+        "picture": "https://img.favpng.com/24/3/8/superman-batman-batgirl-dc-comics-super-hero-collection-figurine-png-favpng-iK2wZv6nJqq5RLzTtAxeyxABa.jpg",
+        "price": 44.99,
+        "rating": 4.6
+    },
+    {
+        "id": 3,
+        "name": "Luke Skywalker",
+        "picture": "https://heroforge.com/snapshots/2020/Sep/25/t090230_u780205.png",
+        "price": 19.99,
+        "rating": 4.5
+    },
+    {
+        "id": 3,
+        "name": "Han Solo",
+        "picture": "https://cdn.shopify.com/s/files/1/0252/0422/8168/products/han-solo-hero4.1550555282_1024x1024@2x.jpg?v=1575095151",
+        "price": 22.99,
+        "rating": 4.4
+    }
+]
