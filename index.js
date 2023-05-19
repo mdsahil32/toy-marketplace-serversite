@@ -50,6 +50,22 @@ async function run() {
       res.send(result)
     })
 
+    app.put('/addToy/:id', async(req, res) =>{
+      const id = req.params.id;
+      const filter = {_id: new ObjectId(id)}
+      const options = { upsert: true };
+      const updateToy = req.body;
+      const toy = {
+        $set:{
+          price:updateToy.price,
+          quantity:updateToy.quantity,
+          detail:updateToy.detail
+        }
+      }
+      const result = await toyCollection.updateOne(filter, toy, options)
+      res.send(result)
+    })
+
     app.delete('/addToy/:id', async(req, res) =>{
       const id = req.params.id;
       const query = {_id: new ObjectId(id)}
