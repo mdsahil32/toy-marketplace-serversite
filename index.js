@@ -54,10 +54,10 @@ async function run() {
 
     // Search Option -- ----//
     const indexKeys = { name: 1 };
-    const indexOptions = { name: "name"}
+    const indexOptions = { name: "name" }
 
     const result = await toyCollection.createIndex(indexKeys, indexOptions)
-    
+
     app.get('/toySearchByName/:text', async (req, res) => {
       const searchText = req.params.text;
       const result = await toyCollection.find({
@@ -69,6 +69,13 @@ async function run() {
       res.send(result)
     })
     // end-----
+
+    // set user email data ----
+
+    app.get('/myToys/:email', async (req, res) => {
+      const result = await toyCollection.find({ sellerEmail: req.params.email}).toArray()
+      res.send(result)
+    })
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
