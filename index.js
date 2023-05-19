@@ -30,26 +30,45 @@ async function run() {
 
     await client.connect();
 
-    app.get('/addToy', async(req, res) =>{
-        const cursor= toyCollection.find()
-        const result = await cursor.toArray()
-        res.send(result)
+    app.get('/addToy', async (req, res) => {
+      const cursor = toyCollection.find()
+      const result = await cursor.toArray()
+      res.send(result)
     })
 
-    app.get('/addToy/:id', async(req, res) =>{
-        const id = req.params.id;
-        const query = {_id: new ObjectId(id)}
-        const result = await toyCollection.findOne(query)
-        res.send(result)
+    app.get('/addToy/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) }
+      const result = await toyCollection.findOne(query)
+      res.send(result)
     })
 
-    app.post('/addToy', async(req, res) =>{
-        const addToys = req.body;
-        console.log(addToys);
-        const result = await toyCollection.insertOne(addToys);
-        res.send(result)
+    app.post('/addToy', async (req, res) => {
+      const addToys = req.body;
+      console.log(addToys);
+      const result = await toyCollection.insertOne(addToys);
+      res.send(result)
     })
 
+
+
+    // Search Option -- ----//
+    const indexKeys = { name: 1 };
+    const indexOptions = { name: "name"}
+
+    const result = await toyCollection.createIndex(indexKeys, indexOptions)
+    
+    app.get('/toySearchByName/:text', async (req, res) => {
+      const searchText = req.params.text;
+      const result = await toyCollection.find({
+        $or: [
+          { name: { $regex: searchText, $options: "i" } }
+        ],
+      })
+        .toArray();
+      res.send(result)
+    })
+    // end-----
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
@@ -65,28 +84,28 @@ run().catch(console.dir);
 
 // 
 app.get('/', (req, res) => {
-    res.send('hero toys server is running')
+  res.send('hero toys server is running')
 })
 
 app.get('/category', (req, res) => {
-    res.send(category)
+  res.send(category)
 })
 
 app.get('/toys/:id', (req, res) => {
-    const id = req.params.id;
-    const selectedToys = category.find(c => c.number ==  id)
-    res.send(selectedToys)
+  const id = req.params.id;
+  const selectedToys = category.find(c => c.number == id)
+  res.send(selectedToys)
 })
 
 app.get('/category/:id', (req, res) => {
-    const id = req.params.id;
-    console.log(id);
-    const actionHero = category.filter(c => c.id == id)
-    res.send(actionHero)
+  const id = req.params.id;
+  console.log(id);
+  const actionHero = category.filter(c => c.id == id)
+  res.send(actionHero)
 })
 
 
 
 app.listen(port, () => {
-    console.log(`running on port ${port}`);
+  console.log(`running on port ${port}`);
 })
