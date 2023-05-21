@@ -11,7 +11,6 @@ app.use(cors())
 app.use(express.json())
 
 // 
-
 const uri = `mongodb+srv://${process.env.USER}:${process.env.PASS}@cluster0.6wm6qxp.mongodb.net/?retryWrites=true&w=majority`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -73,8 +72,6 @@ async function run() {
       res.send(result);
     })
 
-
-
     // Search Option -- ----//
     const indexKeys = { name: 1 };
     const indexOptions = { name: "name" }
@@ -110,8 +107,6 @@ async function run() {
 }
 run().catch(console.dir);
 
-
-
 // 
 app.get('/', (req, res) => {
   res.send('hero toys server is running')
@@ -133,8 +128,6 @@ app.get('/category/:id', (req, res) => {
   const actionHero = category.filter(c => c.id == id)
   res.send(actionHero)
 })
-
-
 
 app.listen(port, () => {
   console.log(`running on port ${port}`);
