@@ -31,7 +31,7 @@ async function run() {
     const toyCollection = client.db('toyDB').collection('toy')
 
     app.get('/addToy', async (req, res) => {
-      const cursor = toyCollection.find()
+      const cursor = toyCollection.find().limit(20)
       const result = await cursor.toArray()
       res.send(result)
     })
